@@ -1,0 +1,28 @@
+section.new-tweet {
+    background-color: #e8e8e8;
+    border: solid 1px #a7a7a7;
+    border-radius: 5px;
+    margin: 0em 2em;
+    padding:  0.5em;
+}
+
+section.new-tweet h2 {
+    margin-top: 2px;
+    border-bottom: 1px solid #a7a7a7;
+}
+
+section.new-tweet textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #a7a7a7;
+}
+
+section.new-tweet input {
+    border: 1px solid #a7a7a7;
+    background: linear-gradient(180deg, rgba(216,214,217,1) 0%, rgba(240,239,237,1) 100%);
+}
+
+span.counter {
+    float: right;
+    margin: 3px 7px;
+}
