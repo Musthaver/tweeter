@@ -22,7 +22,11 @@ section.new-tweet input {
     background: linear-gradient(180deg, rgba(216,214,217,1) 0%, rgba(240,239,237,1) 100%);
 }
 
-span.counter {
+section.new-tweet .counter {
     float: right;
     margin: 3px 7px;
+}
+
+section.new-tweet .counter.red{
+    color: red;
 }
