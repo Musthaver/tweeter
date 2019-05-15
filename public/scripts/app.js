@@ -3,7 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-
+const tweetsUrl = "/tweets";
 
 function renderTweets(tweets) {
     for (const tweet of tweets) {
@@ -44,8 +44,38 @@ const createTweetElement = (tweetObj) => {
 };
 
 
+function loadTweets (url, amount) {
+  
+  $.ajax({
+    method: 'GET',
+    url: url,
+  })
+    // callback function when the request is done. We have access to the response.
+    .done(response => {
+      // Creating and adding all the posts to the page
+
+      if(amount === "all") {
+        renderTweets(response);
+      } else {
+        let lastElement = response.length - 1;
+        const $tweet = createTweetElement(response[lastElement]);
+        $('#tweets').append($tweet);
+      }
+      
+    })
+    // Catching an error with the request
+    .fail(error => {
+      console.log(`Error: ${error}`);
+    })
+    // This will always execute
+    .always(() => {
+      console.log('Get completed.');
+    });
+};
+
 $(function() {
-// renderTweets(data);
+
+
 
 $('.new-tweet form').on('submit', function(event) {
   // stopping the form to being submitted
@@ -56,9 +86,14 @@ $('.new-tweet form').on('submit', function(event) {
     data: $(this).serialize()
   })
     // callback function when the request is done. We have access to the response.
-    .done(response => {
+    .done(function(response) {
       // Creating and adding all the posts to the page
-      console.log($(this).serialize());
+      loadTweets(tweetsUrl, "some");
+      //empty the textarea after submit complete
+      const textarea = $(this).find('textarea').val();
+      console.log(textarea.val());
+      textarea.val('');
+      console.log(textarea.val());
     })
     // Catching an error with the request
     .fail(error => {
@@ -66,33 +101,11 @@ $('.new-tweet form').on('submit', function(event) {
     })
     // This will always execute
     .always(() => {
-      console.log('Request completed.');
+      console.log('Post completed.');
     });
  
 }) 
 
-function loadtweets (url) {
-  console.log(url);
-  $.ajax({
-    method: 'GET',
-    url: url,
-  })
-    // callback function when the request is done. We have access to the response.
-    .done(response => {
-      console.log(response);
-      // Creating and adding all the posts to the page
-      renderTweets(response);
-    })
-    // Catching an error with the request
-    .fail(error => {
-      console.log(`Error: ${error}`);
-    })
-    // This will always execute
-    .always(() => {
-      console.log('Request completed.');
-    });
-};
-
-loadtweets("http://localhost:8080/tweets");
+loadTweets(tweetsUrl, "all");
 
 });
