@@ -27,6 +27,7 @@ section#tweets header h2 {
 section#tweets header img.avatar {
     height: 50px;
     float: left;
+    border-radius: 5px;
 }
 
 section#tweets header p {

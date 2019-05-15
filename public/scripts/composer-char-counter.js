@@ -8,4 +8,4 @@ $(document).ready(function() {
         //add class for red CSS when under 0
         (count < 0) ? originalCounter.addClass("red") : originalCounter.removeClass("red");
     });
-  });
+});

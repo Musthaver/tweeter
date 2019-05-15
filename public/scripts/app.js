@@ -58,23 +58,27 @@ function renderTweets(tweets) {
     for (const tweet of tweets) {
         const $tweet = createTweetElement(tweet);
         console.log($tweet);
-        $('section#tweets').append($tweet);
+        $('#tweets').append($tweet);
     }
 } 
 
 const createTweetElement = (tweetObj) => {
 
     const $article = $('<article>');
+
+    //create header elements
     const $header = $('<header>');
     const $headerImg = $('<img>').addClass('avatar').attr('src', tweetObj.user.avatars.small);
     const $headerH2 = $('<h2>').addClass('user').text(tweetObj.user.name);
     const $headerP = $('<p>').text(tweetObj.user.handle);
-    $header.append($headerImg)
-    $header.append($headerH2);
-    $header.append($headerP);
+    $header.append($headerImg).append($headerH2).append($headerP);
     $article.append($header);
+
+    //create main tweet area elements
     const $mainP = $('<p>').addClass('content').text(tweetObj.content.text);
     $article.append($mainP);
+
+    //create footer elements
     const $footer = $('<footer>');
     const $footerP = $('<p>').text(tweetObj["created_at"]);
     $footer.append($footerP);
