@@ -1,7 +1,15 @@
-section#tweets {
+section#tweets article:hover {
     border: solid 1px #a7a7a7;
-    border-radius: 5px;
+}
+
+section#tweets header:hover {
+    color: #274952
+}
+
+section#tweets article {
     margin: 2em;
+    border: solid 1px #eaeaea;
+    border-radius: 5px;
     padding:  0em;
 }
 section#tweets header{
@@ -10,12 +18,14 @@ section#tweets header{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     height: 60px;
+    color: #467c8a
 }
 
 section#tweets header h2 {
     margin-top: 2px;
     float: left;
     padding-left: 10px;
+    /* color: #467c8a; */
 }
 
 section#tweets header img.avatar {
