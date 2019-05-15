@@ -1,45 +1,35 @@
 section#tweets article:hover {
-    border: solid 1px #a7a7a7;
-}
-
-section#tweets header:hover {
-    color: #274952
+    opacity: 1;
 }
 
 section#tweets article {
     margin: 2em;
-    border: solid 1px #eaeaea;
+    border: solid 1px #a7a7a7;
     border-radius: 5px;
     padding:  0em;
+    opacity: 0.6;
 }
+
 section#tweets header{
     background-color: #eaeaea;
     padding: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     height: 60px;
-    color: #467c8a
 }
 
 section#tweets header h2 {
     margin-top: 2px;
     float: left;
     padding-left: 10px;
-    /* color: #467c8a; */
 }
 
 section#tweets header img.avatar {
     height: 50px;
     float: left;
-    /* left: 2px; */
-    /* padding: 2em; */
-    /* margin: 0.2em; */
-    /* display: flex; */
 }
 
 section#tweets header p {
-    /* flex-direction: row-reverse; */
-    /* justify-content: flex-start; */
     margin-top: 7px;
     float: right;
 }
@@ -55,6 +45,8 @@ section#tweets footer p {
 }
 
 section#tweets p.content {
+    display: flex;
+    align-items: center;
     margin: 10px;
     height: 70px;
 }
