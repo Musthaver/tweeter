@@ -8,7 +8,7 @@ const tweetsUrl = "/tweets";
 function renderTweets(tweets) {
     for (const tweet of tweets) {
         const $tweet = createTweetElement(tweet);
-        $('#tweets').append($tweet);
+        $('#tweets').prepend($tweet);
     }
 } 
 
@@ -57,15 +57,14 @@ function loadTweets (url, amount) {
       if(amount === "all") {
         renderTweets(response);
       } else {
-        let lastElement = response.length - 1;
-        const $tweet = createTweetElement(response[lastElement]);
-        $('#tweets').append($tweet);
+        const $tweet = createTweetElement(response.pop());
+        $('#tweets').prepend($tweet);
       }
       
     })
     // Catching an error with the request
     .fail(error => {
-      console.log(`Error: ${error}`);
+      console.log(`Get Error: ${error}`);
     })
     // This will always execute
     .always(() => {
@@ -76,10 +75,17 @@ function loadTweets (url, amount) {
 $(function() {
 
 
-
 $('.new-tweet form').on('submit', function(event) {
+  console.log($(this).serialize());
+  const input = $(this).serialize();
+  if (input.length <= 5) {
+    alert("please enter a valid tweet");
+  } else if (input.length >= 146) {
+    alert("input too long, please shorten your tweet")
+  } else {
   // stopping the form to being submitted
   event.preventDefault();
+  
   $.ajax({
     method: 'POST',
     url: "/tweets",
@@ -90,20 +96,20 @@ $('.new-tweet form').on('submit', function(event) {
       // Creating and adding all the posts to the page
       loadTweets(tweetsUrl, "some");
       //empty the textarea after submit complete
-      const textarea = $(this).find('textarea').val();
-      console.log(textarea.val());
-      textarea.val('');
-      console.log(textarea.val());
+      // const textarea = $(this).find('textarea');
+      // console.log($(this));
+      // textarea.val('');
+      // console.log(textarea.val());
     })
     // Catching an error with the request
     .fail(error => {
-      console.log(`Error: ${error}`);
+      console.log(`Post Error: ${error}`);
     })
     // This will always execute
     .always(() => {
       console.log('Post completed.');
     });
- 
+  }
 }) 
 
 loadTweets(tweetsUrl, "all");
