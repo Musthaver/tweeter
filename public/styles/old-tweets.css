@@ -1,6 +1,9 @@
 section#tweets article:hover {
     opacity: 1;
 }
+section#tweets article:hover footer i {
+    opacity: 1;
+}
 
 section#tweets article {
     margin: 2em;
@@ -35,20 +38,31 @@ section#tweets header p {
     float: right;
 }
 
-section#tweets footer {
-    border-top: 1px solid #eaeaea;
-}
-
-section#tweets footer p {
-    display:  flex;
-    font-size: 0.7em;
-    margin: 10px;
-}
-
 section#tweets p.content {
     display: flex;
     align-items: center;
     margin: 10px;
     height: 70px;
 }
+
+section#tweets footer {
+    border-top: 1px solid #eaeaea;
+    height: 30px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section#tweets footer p {
+    float: left;
+    font-size: 0.7em;
+}
+
+section#tweets footer i {
+    margin: 0px 2px;
+    opacity: 0;
+}
+
+
 
