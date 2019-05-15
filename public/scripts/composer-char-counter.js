@@ -7,5 +7,10 @@ $(document).ready(function() {
 
         //add class for red CSS when under 0
         (count < 0) ? originalCounter.addClass("red") : originalCounter.removeClass("red");
+
+        // const input = $('input[type="submit"]');
+        // console.log(input);
+    
+        // (length > 140) ? input.attr("disabled") : input.removeAttr("disabled")
     });
 });

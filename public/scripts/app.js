@@ -75,16 +75,16 @@ function loadTweets (url, amount) {
 $(function() {
 
 
-$('.new-tweet form').on('submit', function(event) {
-  console.log($(this).serialize());
+$('.new-tweet form').on('submit', function(event) {  
+  event.preventDefault();
+  
   const input = $(this).serialize();
   if (input.length <= 5) {
     alert("please enter a valid tweet");
   } else if (input.length >= 146) {
-    alert("input too long, please shorten your tweet")
+    alert("input too long, please shorten your tweet");
   } else {
   // stopping the form to being submitted
-  event.preventDefault();
   
   $.ajax({
     method: 'POST',
