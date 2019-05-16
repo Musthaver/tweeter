@@ -94,7 +94,8 @@ hideCompose();
 $('.new-tweet form').on('submit', function(event) {  
   event.preventDefault();
   const input = $(this).find('textarea').val();
-
+  
+//validation
   if (input.length <= 0) {
     $('.isa_error > span').text("Please enter a valid tweet");
     $('.isa_error').slideDown();
@@ -120,10 +121,8 @@ $('.new-tweet form').on('submit', function(event) {
       // Creating and adding all the posts to the page
       loadTweets(tweetsUrl, "some");
       //empty the textarea after submit complete
-      // const textarea = $(this).find('textarea');
-      // console.log($(this));
-      // textarea.val('');
-      // console.log(textarea.val());
+      const textarea = $(this).find('textarea');
+      textarea.val('');
     })
     // Catching an error with the request
     .fail(error => {
