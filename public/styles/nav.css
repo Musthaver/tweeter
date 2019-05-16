@@ -25,7 +25,7 @@
     float: left;
 }
 
-#nav-bar div button {
+#nav-bar .compose {
     height: 3.5em;
     border: 1px solid black;
     border-radius: 5px;
@@ -33,7 +33,7 @@
     background-color: #c6eae4;
 }
 
-#nav-bar div button:hover {
+#nav-bar .compose:hover {
     background-color: white;
     color: black;
 }

@@ -73,10 +73,10 @@ function loadTweets (url, amount) {
 };
 
 function hideCompose() {
-  var newTweet = $('.new-tweet');
+  const newTweet = $('.new-tweet');
   newTweet.hide();
 
-  $('#nav-bar div button').on('click', function(event) {  
+  $('#nav-bar .compose').on('click', function(event) {  
     if (newTweet.hasClass('hidden')) {
       newTweet.slideDown().find('textarea').focus();
       newTweet.removeClass('hidden')
@@ -86,11 +86,11 @@ function hideCompose() {
   });
 }
 
+
 $(function() {
 
 hideCompose();
  
-
 $('.new-tweet form').on('submit', function(event) {  
   event.preventDefault();
 
