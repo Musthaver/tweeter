@@ -72,23 +72,22 @@ function loadTweets (url, amount) {
     });
 };
 
-$(function() {
-
 function hideCompose() {
   var newTweet = $('.new-tweet');
   newTweet.hide();
 
   $('#nav-bar div button').on('click', function(event) {  
-  console.log(newTweet.hasClass('hidden'));
-  if (newTweet.hasClass('hidden')) {
-    newTweet.slideDown();
-    newTweet.removeClass('hidden');
-  } else {
-    newTweet.slideUp();
-    newTweet.addClass('hidden');
-  }  
-});
+    if (newTweet.hasClass('hidden')) {
+      newTweet.slideDown().find('textarea').focus();
+      newTweet.removeClass('hidden')
+    } else {
+      newTweet.slideUp().addClass('hidden');
+    }  
+  });
 }
+
+$(function() {
+
 hideCompose();
  
 
