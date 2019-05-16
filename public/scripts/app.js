@@ -30,7 +30,7 @@ const createTweetElement = (tweetObj) => {
 
     //create and add footer elements
     const $footer = $('<footer>');
-    const $footerP = $('<p>').text(tweetObj["created_at"]);
+    const $footerP = $('<p>').text(new Date(tweetObj["created_at"]));
     const $icons = $('<div>');
     const $flag = $('<i>').addClass('fas fa-flag');
     const $retweet = $('<i>').addClass('fas fa-retweet');
@@ -74,10 +74,27 @@ function loadTweets (url, amount) {
 
 $(function() {
 
+function hideCompose() {
+  var newTweet = $('.new-tweet');
+  newTweet.hide();
+
+  $('#nav-bar div button').on('click', function(event) {  
+  console.log(newTweet.hasClass('hidden'));
+  if (newTweet.hasClass('hidden')) {
+    newTweet.slideDown();
+    newTweet.removeClass('hidden');
+  } else {
+    newTweet.slideUp();
+    newTweet.addClass('hidden');
+  }  
+});
+}
+hideCompose();
+ 
 
 $('.new-tweet form').on('submit', function(event) {  
   event.preventDefault();
-  
+
   const input = $(this).serialize();
   if (input.length <= 5) {
     alert("please enter a valid tweet");

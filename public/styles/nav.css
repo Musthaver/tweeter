@@ -7,6 +7,9 @@
     background-color: #00a087;
     color: #e8fdff;
     z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #nav-bar .logo {
@@ -20,4 +23,17 @@
     font-size: 2em;
     line-height: 2.5em;
     float: left;
+}
+
+#nav-bar div button {
+    height: 3.5em;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 6em;
+    background-color: #c6eae4;
+}
+
+#nav-bar div button:hover {
+    background-color: white;
+    color: black;
 }

@@ -36,14 +36,19 @@
 
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
+      <div>
         <img class="logo" src="/images/bird.png">
         <span class="header">Tweeter</span>
+      </div>
+      <div>
+        <button>Compose</button>
+      </div>
     </nav>
 
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-        <section class="new-tweet">
+        <section class="new-tweet hidden">
             <h2>Compose Tweet</h2>
             <form method="POST" action="/tweets">
               <textarea name="text" placeholder="What are you humming about?"></textarea>
