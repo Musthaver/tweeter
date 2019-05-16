@@ -37,8 +37,5 @@ section.new-tweet .isa_error{
     color: #D8000C;
     background-color: #FFD2D2;
     display: none;
+    border-radius: 5px;
 }
-
-/* section.new-tweet .isa_error.hidden {
-    display: none;
-} */

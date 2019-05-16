@@ -93,18 +93,18 @@ hideCompose();
  
 $('.new-tweet form').on('submit', function(event) {  
   event.preventDefault();
+  const input = $(this).find('textarea').val();
 
-  const input = $(this).serialize();
-  if (input.length <= 5) {
-    $('.isa_error > span').text("Please enter a valid tweeter");
-    $('.isa_error').slideToggle(500, "linear");
+  if (input.length <= 0) {
+    $('.isa_error > span').text("Please enter a valid tweet");
+    $('.isa_error').slideDown();
     $('.new-tweet form textarea').on('focus', function(event) {
       $('.isa_error').slideUp();
     });
     
-  } else if (input.length >= 146) {
+  } else if (input.length > 140) {
     $('.isa_error > span').text("input too long, please shorten your tweet");
-    $('.isa_error').slideToggle(500, "linear");
+    $('.isa_error').slideDown();
     $('.new-tweet form textarea').on('focus', function(event) {
       $('.isa_error').slideUp();
     });
@@ -116,7 +116,7 @@ $('.new-tweet form').on('submit', function(event) {
     data: $(this).serialize()
   })
     // callback function when the request is done. We have access to the response.
-    .done(function(response) {
+    .done((response) => {
       // Creating and adding all the posts to the page
       loadTweets(tweetsUrl, "some");
       //empty the textarea after submit complete
