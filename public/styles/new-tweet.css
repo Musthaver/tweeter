@@ -30,3 +30,15 @@ section.new-tweet .counter {
 section.new-tweet .counter.red{
     color: red;
 }
+
+section.new-tweet .isa_error{
+    margin: 10px 0px;
+    padding:12px;
+    color: #D8000C;
+    background-color: #FFD2D2;
+    display: none;
+}
+
+/* section.new-tweet .isa_error.hidden {
+    display: none;
+} */

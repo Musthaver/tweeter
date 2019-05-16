@@ -96,11 +96,19 @@ $('.new-tweet form').on('submit', function(event) {
 
   const input = $(this).serialize();
   if (input.length <= 5) {
-    alert("please enter a valid tweet");
+    $('.isa_error > span').text("Please enter a valid tweeter");
+    $('.isa_error').slideToggle(500, "linear");
+    $('.new-tweet form textarea').on('focus', function(event) {
+      $('.isa_error').slideUp();
+    });
+    
   } else if (input.length >= 146) {
-    alert("input too long, please shorten your tweet");
+    $('.isa_error > span').text("input too long, please shorten your tweet");
+    $('.isa_error').slideToggle(500, "linear");
+    $('.new-tweet form textarea').on('focus', function(event) {
+      $('.isa_error').slideUp();
+    });
   } else {
-  // stopping the form to being submitted
   
   $.ajax({
     method: 'POST',
