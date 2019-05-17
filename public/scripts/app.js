@@ -29,7 +29,7 @@ const createTweetElement = (tweetObj) => {
 
   //create and add footer elements
   const $footer = $('<footer>');
-  const $footerP = $('<p>').text(Date.now - (tweetObj["created_at"]).toLocaleString());
+  const $footerP = $('<p>').text(tweetObj["created_at"]);
   const $icons = $('<div>');
   const $flag = $('<i>').addClass('fas fa-flag');
   const $retweet = $('<i>').addClass('fas fa-retweet');
@@ -41,6 +41,8 @@ const createTweetElement = (tweetObj) => {
 
   return $article;
 };
+
+
 
 //Get tweets with Ajax
 const loadTweets = (url, amount) => {

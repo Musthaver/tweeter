@@ -9,7 +9,9 @@ module.exports = function makeDataHelpers(db) {
       db.collection('tweets')
       .insertOne(newTweet)
       .then((result) => {
-        callback(null, true);
+        // callback(null, true);
+        let answer = result ? null : result;
+        callback(answer);
       });
     },
 
@@ -21,7 +23,8 @@ module.exports = function makeDataHelpers(db) {
       .toArray()
       .then((result) => {
         callback(null, result.sort(sortNewestFirst));
-      });
+      })
+      .catch(err => callback(err, null));
     }
   }
 }
