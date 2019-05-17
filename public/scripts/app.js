@@ -29,7 +29,9 @@ const createTweetElement = (tweetObj) => {
 
   //create and add footer elements
   const $footer = $('<footer>');
-  const $footerP = $('<p>').text(timeSince(tweetObj["created_at"]));
+  let postTime = new Date(tweetObj["created_at"]);
+  let timeDiff = moment(postTime).fromNow();
+  const $footerP = $('<p>').text(timeDiff);
   const $icons = $('<div>');
   const $flag = $('<i>').addClass('fas fa-flag');
   const $retweet = $('<i>').addClass('fas fa-retweet');
@@ -104,23 +106,6 @@ const validateInputLength = (input) => {
     return true;
   }
 }  
-
-const timeSince = (tweetTime) => {
-  const secondsPassed = (Date.now() - tweetTime)/1000;
-  console.log(secondsPassed);
-  if (secondsPassed < 60) {
-    return `${parseInt(secondsPassed)} seconds ago`;
-  } else if (secondsPassed < 3600) {
-    return `${parseInt(secondsPassed/60)} minutes ago`;
-  } else if (secondsPassed <= 86400) {
-    return `${parseInt(secondsPassed/3600)} hours ago`;
-  } else if (secondsPassed <= 2628000) {
-    return `${parseInt(secondsPassed/86400)} days ago`;
-  } else if (secondsPassed <= 316536000) {
-    return `${parseInt(secondsPassed/2628000)} months ago`;
-  }
-}
-
 
 
 //another way to write $(document).ready(function()
