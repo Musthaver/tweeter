@@ -9,7 +9,6 @@ module.exports = function makeDataHelpers(db) {
       db.collection('tweets')
       .insertOne(newTweet)
       .then((result) => {
-        // callback(null, true);
         let answer = result ? null : result;
         callback(answer);
       });
