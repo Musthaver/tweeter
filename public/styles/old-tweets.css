@@ -6,7 +6,7 @@ section#tweets article:hover footer i {
 }
 
 section#tweets article {
-    margin: 2em;
+    margin: 1em 2em;
     border: solid 1px #a7a7a7;
     border-radius: 5px;
     padding:  0em;

@@ -25,6 +25,7 @@ module.exports = function makeDataHelpers(db) {
       .toArray()
       .then( 
         (result) => {
+          console.log(result);
           callback(null, result.sort(sortNewestFirst));
       });
     }

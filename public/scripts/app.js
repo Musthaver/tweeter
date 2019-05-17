@@ -30,7 +30,7 @@ const createTweetElement = (tweetObj) => {
 
     //create and add footer elements
     const $footer = $('<footer>');
-    const $footerP = $('<p>').text(new Date(tweetObj["created_at"]));
+    const $footerP = $('<p>').text(Date.now - (tweetObj["created_at"]).toLocaleString());
     const $icons = $('<div>');
     const $flag = $('<i>').addClass('fas fa-flag');
     const $retweet = $('<i>').addClass('fas fa-retweet');
