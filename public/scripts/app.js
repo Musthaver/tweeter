@@ -30,6 +30,7 @@ const createTweetElement = (tweetObj) => {
   //create and add footer elements
   const $footer = $('<footer>');
   let postTime = new Date(tweetObj["created_at"]);
+  console.log(postTime)
   let timeDiff = moment(postTime).fromNow();
   const $footerP = $('<p>').text(timeDiff);
   const $icons = $('<div>');
