@@ -1,17 +1,16 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
+
+
 const tweetsUrl = "/tweets";
 
+//Loop through DB array and send each element to creteTweetElement, prepend result to Tweets section
 function renderTweets(tweets) {
-    for (const tweet of tweets) {
-      const $tweet = createTweetElement(tweet);
-      $('#tweets').prepend($tweet);
-    }
+  for (const tweet of tweets) {
+    const $tweet = createTweetElement(tweet);
+    $('#tweets').prepend($tweet);
+  }
 } 
 
+//function to build HTML article
 const createTweetElement = (tweetObj) => {
 
   const $article = $('<article>');
@@ -43,8 +42,8 @@ const createTweetElement = (tweetObj) => {
   return $article;
 };
 
-
-function loadTweets (url, amount) {
+//Get tweets with Ajax
+const loadTweets = (url, amount) => {
   
   $.ajax({
     method: 'GET',
@@ -52,15 +51,13 @@ function loadTweets (url, amount) {
   })
     // callback function when the request is done. We have access to the response.
     .done(response => {
-
-      // Creating and adding all the posts to the page or just the newest addition
+      // Creating and adding  either all the posts to the page or just the newest addition
       if(amount === "all") {
         renderTweets(response);
       } else {
         const $tweet = createTweetElement(response.pop());
         $('#tweets').prepend($tweet);
       }
-      
     })
     // Catching an error with the request
     .fail(error => {
@@ -71,8 +68,8 @@ function loadTweets (url, amount) {
     });
 };
 
-//function to hide the Compose box on load and handle the toggle
-function hideCompose() {
+//function to hide the Compose box on load and handle the compose toggle
+const hideCompose = () => {
   const newTweet = $('.new-tweet');
   newTweet.hide();
 
@@ -86,31 +83,39 @@ function hideCompose() {
   });
 }
 
-
-$(function() {
-
-hideCompose();
-
-//listener on Compose tweet submit. Validation and ajax call included 
-$('.new-tweet form').on('submit', function(event) {  
-  event.preventDefault();
-  const input = $(this).find('textarea').val();
-  
-//validation
+//function to validate input length and display error message accordingly
+const validateInputLength = (input) => {
   if (input.length <= 0) {
-    $('.isa_error > span').text("Please enter a valid tweet");
+    $('.isa_error > span').text("Please enter a valid tweet.");
     $('.isa_error').slideDown();
     $('.new-tweet form textarea').on('focus', function(event) {
       $('.isa_error').slideUp();
     });
     
   } else if (input.length > 140) {
-    $('.isa_error > span').text("input too long, please shorten your tweet");
+    $('.isa_error > span').text("Tweets must be under 140 characters. Please shorten your tweet.");
     $('.isa_error').slideDown();
     $('.new-tweet form textarea').on('focus', function(event) {
       $('.isa_error').slideUp();
     });
   } else {
+    return true;
+  }
+}  
+
+//another way to write $(document).ready(function()
+$(function() {
+
+//hide the compose tweet section until toggled
+hideCompose();
+
+//listener on Compose tweet submit. validate before ajax call
+$('.new-tweet form').on('submit', function(event) {  
+  event.preventDefault();
+  const input = $(this).find('textarea').val();
+
+//run validation, if passes continue
+if (validateInputLength(input)) {
   
   $.ajax({
     method: 'POST',
@@ -119,7 +124,7 @@ $('.new-tweet form').on('submit', function(event) {
   })
     // callback function when the request is done. We have access to the response.
     .done((response) => {
-      // Creating and adding all the posts to the page
+      // Creating and adding the most recent tweet
       loadTweets(tweetsUrl, "some");
       //empty the textarea after submit complete
       const textarea = $(this).find('textarea');
@@ -129,13 +134,13 @@ $('.new-tweet form').on('submit', function(event) {
     .fail(error => {
       console.log(`Post Error: ${error}`);
     })
-    // This will always execute
     .always(() => {
       console.log('Post completed.');
     });
   }
 }) 
 
+//Load all existing tweets on page load
 loadTweets(tweetsUrl, "all");
 
 });
