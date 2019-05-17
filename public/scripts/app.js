@@ -7,40 +7,40 @@ const tweetsUrl = "/tweets";
 
 function renderTweets(tweets) {
     for (const tweet of tweets) {
-        const $tweet = createTweetElement(tweet);
-        $('#tweets').prepend($tweet);
+      const $tweet = createTweetElement(tweet);
+      $('#tweets').prepend($tweet);
     }
 } 
 
 const createTweetElement = (tweetObj) => {
 
-    const $article = $('<article>');
+  const $article = $('<article>');
 
-    //create and add header elements
-    const $header = $('<header>');
-    const $headerImg = $('<img>').addClass('avatar').attr('src', tweetObj.user.avatars.small);
-    const $headerH2 = $('<h2>').addClass('user').text(tweetObj.user.name);
-    const $headerP = $('<p>').text(tweetObj.user.handle);
-    $header.append($headerImg).append($headerH2).append($headerP);
-    $article.append($header);
+  //create and add header elements
+  const $header = $('<header>');
+  const $headerImg = $('<img>').addClass('avatar').attr('src', tweetObj.user.avatars.small);
+  const $headerH2 = $('<h2>').addClass('user').text(tweetObj.user.name);
+  const $headerP = $('<p>').text(tweetObj.user.handle);
+  $header.append($headerImg).append($headerH2).append($headerP);
+  $article.append($header);
 
-    //create main tweet area elements
-    const $mainP = $('<p>').addClass('content').text(tweetObj.content.text);
-    $article.append($mainP);
+  //create main tweet area elements
+  const $mainP = $('<p>').addClass('content').text(tweetObj.content.text);
+  $article.append($mainP);
 
-    //create and add footer elements
-    const $footer = $('<footer>');
-    const $footerP = $('<p>').text(Date.now - (tweetObj["created_at"]).toLocaleString());
-    const $icons = $('<div>');
-    const $flag = $('<i>').addClass('fas fa-flag');
-    const $retweet = $('<i>').addClass('fas fa-retweet');
-    const $heart = $('<i>').addClass('far fa-heart');
-    
-    $icons.append($flag).append($retweet).append($heart);
-    $footer.append($footerP).append($icons);
-    $article.append($footer);
+  //create and add footer elements
+  const $footer = $('<footer>');
+  const $footerP = $('<p>').text(Date.now - (tweetObj["created_at"]).toLocaleString());
+  const $icons = $('<div>');
+  const $flag = $('<i>').addClass('fas fa-flag');
+  const $retweet = $('<i>').addClass('fas fa-retweet');
+  const $heart = $('<i>').addClass('far fa-heart');
+  
+  $icons.append($flag).append($retweet).append($heart);
+  $footer.append($footerP).append($icons);
+  $article.append($footer);
 
-    return $article;
+  return $article;
 };
 
 
@@ -52,8 +52,8 @@ function loadTweets (url, amount) {
   })
     // callback function when the request is done. We have access to the response.
     .done(response => {
-      // Creating and adding all the posts to the page
 
+      // Creating and adding all the posts to the page or just the newest addition
       if(amount === "all") {
         renderTweets(response);
       } else {
@@ -66,12 +66,12 @@ function loadTweets (url, amount) {
     .fail(error => {
       console.log(`Get Error: ${error}`);
     })
-    // This will always execute
     .always(() => {
       console.log('Get completed.');
     });
 };
 
+//function to hide the Compose box on load and handle the toggle
 function hideCompose() {
   const newTweet = $('.new-tweet');
   newTweet.hide();
@@ -90,7 +90,8 @@ function hideCompose() {
 $(function() {
 
 hideCompose();
- 
+
+//listener on Compose tweet submit. Validation and ajax call included 
 $('.new-tweet form').on('submit', function(event) {  
   event.preventDefault();
   const input = $(this).find('textarea').val();

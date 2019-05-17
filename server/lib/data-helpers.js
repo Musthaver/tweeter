@@ -11,9 +11,8 @@ module.exports = function makeDataHelpers(db) {
     saveTweet: function(newTweet, callback) {
       db.collection('tweets')
       .insertOne(newTweet)
-      .then(
-        (result) => {
-          callback(null, true);
+      .then((result) => {
+        callback(null, true);
       });
     },
 
@@ -23,12 +22,9 @@ module.exports = function makeDataHelpers(db) {
       db.collection('tweets')
       .find()
       .toArray()
-      .then( 
-        (result) => {
-          console.log(result);
-          callback(null, result.sort(sortNewestFirst));
+      .then( (result) => {
+        allback(null, result.sort(sortNewestFirst));
       });
     }
-
   }
 }

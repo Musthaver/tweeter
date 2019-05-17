@@ -1,39 +1,39 @@
 #nav-bar {
-    padding: 0px 2em;
-    position: fixed;
-    top: 0;
-    height: 80px;
-    width: 100%;
-    background-color: #00a087;
-    color: #e8fdff;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 0px 2em;
+  position: fixed;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  background-color: #00a087;
+  color: #e8fdff;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #nav-bar .logo {
-    width: 80px;
-    height: 80px;
-    float: left;
+  width: 80px;
+  height: 80px;
+  float: left;
 }
 
 #nav-bar .header {
-    padding-left: 10px;
-    font-size: 2em;
-    line-height: 2.5em;
-    float: left;
+  padding-left: 10px;
+  font-size: 2em;
+  line-height: 2.5em;
+  float: left;
 }
 
 #nav-bar .compose {
-    height: 3.5em;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 6em;
-    background-color: #c6eae4;
+  height: 3.5em;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 6em;
+  background-color: #c6eae4;
 }
 
 #nav-bar .compose:hover {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
